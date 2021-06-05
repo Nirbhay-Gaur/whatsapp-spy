@@ -57,23 +57,20 @@ try:
             # Press enter to confirm phone number
             inp_box.send_keys(Keys.ENTER)
         
-            time.sleep(2)
-        
-          # NOT WORKING PROPERLY. FIX THIS!!!
-          #  while(tryAgain): 
-          #  
-          #      trgt_name = browser.find_element_by_xpath(TARGET_NAME).get_attribute('innerText')
+            time.sleep(5)
+            
+            while(tryAgain): 
+                trgt_name = browser.find_element_by_xpath(TARGET_NAME).get_attribute('innerText')
+                try: 
+                    if(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'online'):
+                        print(trgt_name + " is online")
+                except: 
+                    print(trgt_name + " is offline")
+                time.sleep(1)
 
-          #      if (browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText')
- == 'onlin#e'):
-          #              print(trgt_name + ' is online')
-          #              time.sleep(10)
-          #      else:
-          #          print(trgt_name + ' is offline')
-          #          time.sleep(2)
         except:
             print("Something happened, but I'm not telling you what. Trying my best to restart spying")
 except: 
-    print('Bye!')
+    print('Catastrophic Failure, Bye!')
     run = False
     browser.quit()
