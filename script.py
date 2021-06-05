@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.common.keys import Keys 
 import time
+import datetime
 import os
 import argparse
 
@@ -60,17 +61,18 @@ try:
             time.sleep(5)
             
             while(tryAgain): 
+                now = datetime.datetime.now()
                 trgt_name = browser.find_element_by_xpath(TARGET_NAME).get_attribute('innerText')
                 try: 
                     if(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'online'):
-                        print(trgt_name + " is online")
+                        print(trgt_name + " is online at " + now.strftime("%Y-%m-%d %H:%M:%S"))
                 except: 
-                    print(trgt_name + " is offline")
+                    print(trgt_name + " is offline at " + now.strftime("%Y-%m-%d %H:%M:%S"))
                 time.sleep(1)
 
         except:
             print("Something happened, but I'm not telling you what. Trying my best to restart spying")
 except: 
-    print('Catastrophic Failure, Bye!')
+    print('Uh-Oh! Catastrophic Failure, Bye.')
     run = False
     browser.quit()
