@@ -11,11 +11,15 @@ import argparse
 NEW_CHAT_BTN = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[3]/div[1]/header[1]/div[2]/div[1]/span[1]/div[2]/div[1]/span[1]'
 INP_BOX = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/div[1]/span[1]/div[1]/div[1]/div[1]/label[1]/div[1]/div[2]'
 ONLINE_LBL = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[1]/header[1]/div[2]/div[2]/span[1]'
+TARGET_NAME = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[1]/header[1]/div[2]/div[1]/div[1]/span[1]'
 
-# Targets #TODO
+# Targets
 parser = argparse.ArgumentParser(description='WhatsApp Online Tracker')
 
-parser.add_argument('-n', '--name', dest='name', help='saved contact name of the target you wish to spy.\nExample: -n "Your Boss Name"')
+parser.add_argument('-n', '--name',
+                        dest='name',
+                        required=True,
+                        help='saved contact name of the target you wish to spy.\nExample: n "Your Boss Name"')
 
 arg = parser.parse_args()
 
@@ -29,45 +33,47 @@ wait = WebDriverWait(browser, 600)
 # Clear screen
 os.system('clear')
 run = True;
-while run:
+try: 
+    while (run):
 
-#    tryAgain = True
+        tryAgain = True
 
-    # Wait until new chat button is visible
-#    new_chat_btn = wait.until(EC.presence_of_element_located((By.XPATH, NEW_CHAT_BTN)))
+        # Wait until new chat button is visible
+        new_chat_btn = wait.until(EC.presence_of_element_located((By.XPATH, NEW_CHAT_BTN)))
 
-#    while (tryAgain):
-#        try:
+        try:
             # Click new chat button
-#            new_chat_btn.click()
+            new_chat_btn.click()
 
             # Wait until input field is visible
-#            inp_box = wait.until(EC.presence_of_element_located((By.XPATH, INP_BOX)))
-#            time.sleep(0.5)
+            inp_box = wait.until(EC.presence_of_element_located((By.XPATH, INP_BOX)))
+            time.sleep(0.5)
 
             # Write phone number
-#            inp_box.send_keys('9811860178')  #TODO 
+            inp_box.send_keys(arg.name)
             
-#            time.sleep(1)
+            time.sleep(1)
 
             # Press enter to confirm phone number
-#            inp_box.send_keys(Keys.ENTER)
+            inp_box.send_keys(Keys.ENTER)
+        
+            time.sleep(2)
+        
+          # NOT WORKING PROPERLY. FIX THIS!!!
+          #  while(tryAgain): 
+          #  
+          #      trgt_name = browser.find_element_by_xpath(TARGET_NAME).get_attribute('innerText')
 
-#            time.sleep(5)
-#            tryAgain = False
-
-#            try:
-#                try: 
-#                    browser.find_element_by_xpath(ONLINE_LBL)
-#                    print(' is online')
-#                except:
-#                    print(' is offline')
-#                    time.sleep(1)
-#            except:
-#                print('Exception 1')
-#                time.sleep(10)
-#        except:
-#            print('Something went wrong!')
-#            run = False
-#            browser.quit()
-
+          #      if (browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText')
+ == 'onlin#e'):
+          #              print(trgt_name + ' is online')
+          #              time.sleep(10)
+          #      else:
+          #          print(trgt_name + ' is offline')
+          #          time.sleep(2)
+        except:
+            print("Something happened, but I'm not telling you what. Trying my best to restart spying")
+except: 
+    print('Bye!')
+    run = False
+    browser.quit()
