@@ -17,6 +17,7 @@ cd whatsapp-spy
 ```
 Download Chrome Driver: [Download](https://sites.google.com/a/chromium.org/chromedriver/downloads)<br />
 > Note: Be sure to download the correct version of chrome driver which is same as the version of chrome browser installed.
+
 Once downloaded, unzip the file and copy the content inside `whatsapp-spy` folder.<br />
 
 Install requirements: `pip install -r requirements.txt`<br />
