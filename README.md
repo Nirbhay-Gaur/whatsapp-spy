@@ -6,6 +6,7 @@
 * WhatsApp account 
 * Python3
 * Selenium
+* Chrome Browser 
 
 ## Installation
 Assuming that the above mentioned requirements are fulfilled. Proceed the installation by opening a terminal and run: 
