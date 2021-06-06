@@ -17,7 +17,7 @@ chmod +x script.py
 ./script.py -n "Your Boss Name"
 ```
 
-> Note: The name should the contact name saved in your mobile phone.
+> Note: The name should the contact name saved in your mobile phone.<br />
 > Tip: Instead of name you can also enter saved contact number for more accurate results.
 
 Incase you need any help, run: `./script.py -h`
