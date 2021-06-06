@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 from selenium import webdriver 
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC 
@@ -89,7 +91,7 @@ try:
                 time.sleep(1)
                 
         except:
-            print("Something happened, but I'm not telling you what. Trying my best to restart spying")
+            print("Something happened. Check if you are connected to WhatsApp Web.")
             browser.maximize_window()
 except: 
     print('Uh-Oh! Catastrophic Failure, Bye.')
