@@ -33,6 +33,7 @@ wait = WebDriverWait(browser, 600)
 
 # Clear screen
 os.system('clear')
+print("Spying...")
 run = True;
 try: 
     while (run):
@@ -41,6 +42,9 @@ try:
 
         # Wait until new chat button is visible
         new_chat_btn = wait.until(EC.presence_of_element_located((By.XPATH, NEW_CHAT_BTN)))
+
+        # Minimizing browser
+        browser.minimize_window()
 
         try:
             # Click new chat button
@@ -59,19 +63,34 @@ try:
             inp_box.send_keys(Keys.ENTER)
         
             time.sleep(5)
-            
+            on = 1
+            off = 1
+
             while(tryAgain): 
                 now = datetime.datetime.now()
                 trgt_name = browser.find_element_by_xpath(TARGET_NAME).get_attribute('innerText')
-                try: 
+                try:
+                    browser.find_element_by_xpath(ONLINE_LBL)
                     if(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'online'):
-                        print(trgt_name + " is online at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                        if(on == 1):
+                            print(trgt_name + " is online at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                            on = 0 
+                            off = 1
+                    elif(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'typing...'):
+                        print(trgt_name + " is typing at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                    else:
+                        print("Don't mess around in the browser!")
+                        tryAgain = False
                 except: 
-                    print(trgt_name + " is offline at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                    if(off == 1):
+                        print(trgt_name + " is offline at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                        on = 1
+                        off = 0
                 time.sleep(1)
-
+                
         except:
             print("Something happened, but I'm not telling you what. Trying my best to restart spying")
+            browser.maximize_window()
 except: 
     print('Uh-Oh! Catastrophic Failure, Bye.')
     run = False
