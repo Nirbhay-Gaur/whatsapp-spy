@@ -1,5 +1,5 @@
 # WhatsApp Spy
-**WhatsApp Spy** is a python script which allow their users to keep a track on the target's online status.
+**WhatsApp Spy** is a simple yet powerful python script which allow their users to keep a track on the target's online status.
 >Note: This script is for educational purposes only. Use it only to stalk your evil boss. Just kidding, be a good boy and use it justly.
 
 ## Prerequisite
