@@ -22,7 +22,7 @@ parser = argparse.ArgumentParser(description='WhatsApp Online Tracker')
 parser.add_argument('-n', '--name',
                         dest='name',
                         required=True,
-                        help='saved contact name of the target you wish to spy.\nExample: n "Your Boss Name"')
+                    help='saved contact name of the target you wish to spy.\nExample: ./script.py -n "Your Boss Name"')
 
 arg = parser.parse_args()
 
@@ -78,8 +78,8 @@ try:
                             print(trgt_name + " is online at " + now.strftime("%Y-%m-%d %H:%M:%S"))
                             on = 0 
                             off = 1
-                    elif(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'typing...'):
-                        print(trgt_name + " is typing at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                    #elif(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'typing...'):
+                    #    print(trgt_name + " is typing at " + now.strftime("%Y-%m-%d %H:%M:%S"))
                     else:
                         print("Don't mess around in the browser!")
                         tryAgain = False
