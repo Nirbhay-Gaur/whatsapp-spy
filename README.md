@@ -33,5 +33,3 @@ chmod +x script.py
 
 In case you need any help, run: `./script.py -h`
 
-## TODO
-Add Notification services to alert the user when target is online.
