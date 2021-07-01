@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.common.keys import Keys 
+from notify import notification
 import time
 import datetime
 import os
@@ -46,7 +47,7 @@ try:
         new_chat_btn = wait.until(EC.presence_of_element_located((By.XPATH, NEW_CHAT_BTN)))
 
         # Minimizing browser
-        browser.minimize_window()
+        #browser.minimize_window()
 
         try:
             # Click new chat button
@@ -76,6 +77,7 @@ try:
                     if(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'online'):
                         if(on == 1):
                             print(trgt_name + " is online at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                            notification(trgt_name + " is online at " + now.strftime("%Y-%m-%d %H:%M:%S"), title="Whatsapp Spy") 
                             on = 0 
                             off = 1
                     #elif(browser.find_element_by_xpath(ONLINE_LBL).get_attribute('innerText') == 'typing...'):
@@ -86,6 +88,7 @@ try:
                 except: 
                     if(off == 1):
                         print(trgt_name + " is offline at " + now.strftime("%Y-%m-%d %H:%M:%S"))
+                        notification(trgt_name + " is offline at " + now.strftime("%Y-%m-%d %H:%M:%S"), title="Whatsapp Spy")
                         on = 1
                         off = 0
                 time.sleep(1)
